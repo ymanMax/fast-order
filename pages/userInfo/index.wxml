@@ -1,0 +1,71 @@
+<view class="userInfo">
+  <view class="my-bar">
+    <view class='background'></view>	
+    <view class="my-box">
+      <view class="head-bar">
+        <view class="head-bar-left">
+          <button class="userinfo-avatar" bindtap="editnickName">
+            <image src="{{ avatarUrl ? avatarUrl : '/images/default.png' }}" mode="aspectFill" class="userinfo-avatar-img"></image>
+          </button> 
+          <view class="name-box">
+            <view class="name" bindtap="editnickName">{{ nickName ? nickName : '点击设置昵称' }}</view>
+          </view>
+          </view>
+        </view>
+    </view>
+  </view>
+  <view class="">
+    <view class="flex justify-content-between order-box ">
+      <view class="f_size_16" style="color: #000;">我的订单</view>
+      <view class="flex align-items-center f_size_13" bind:tap="toOrderList">
+        <view>全部订单</view>
+        <van-icon size="16" name="arrow" color="#777" />
+      </view>
+    </view>
+    <view class="order-box order-box1 flex align-items-center f_size_14" style="color: #333;">
+      <view class="flex1 flex flex-column justify-content-center align-items-center" bind:tap="toOrderItem" data-index="2">
+        <van-icon size="26" name="todo-list-o" color="#333" />
+        <view style="margin-top: 12rpx;">待使用</view>
+      </view>
+      <view class="flex1 flex flex-column justify-content-center align-items-center" bind:tap="toOrderItem" data-index="4">
+        <van-icon size="26" name="balance-list-o" color="#333" />
+        <view style="margin-top: 12rpx;">订单完成</view>
+      </view>
+      <view class="flex1 flex flex-column justify-content-center align-items-center"bind:tap="toOrderItem" data-index="6">
+        <van-icon size="26" name="failure" color="#333" />
+        <view style="margin-top: 12rpx;">已取消</view>
+      </view>
+    </view>
+  </view>
+  <view class="my-bar1">
+    <view class="flex align-items-center"
+      style="background: #fff;border-bottom: 1px solid #ddd;padding: 0 32rpx;"
+      bind:tap="toMsg">
+      <van-icon size="18" name="more-o" color="#333" />
+      <button style="width: auto;margin: 0 12rpx;font-size: 30rpx;height: 96rpx;line-height: 96rpx;">消息中心</button>
+    </view>
+    <view class="flex align-items-center"
+      style="background: #fff;border-bottom: 1px solid #ddd;padding: 0 32rpx;">
+      <van-icon size="18" name="service-o" color="#333" />
+      <button open-type="contact" style="width: auto;margin: 0 12rpx;font-size: 30rpx;height: 96rpx;line-height: 96rpx;">联系客服</button>
+    </view>
+  </view>
+</view>
+<van-popup
+  show="{{ nickNameShow }}"
+  position="bottom"
+  custom-style="height: 280px"
+  bind:close="onClose">
+  <button class="avatar-wrapper" style="margin: 50rpx auto;width: 120rpx;height: 120rpx;" bindtap="addLoding" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image wx:if="{{ tempAvatar }}" class="avatar" src="{{ tempAvatar }}"></image>
+    <image wx:else class="avatar" src="/images/default.png" style="border-radius: 50%;"></image>
+  </button>
+  <form bindsubmit="onSubmit">
+    <view class="input flex align-items-center">
+        <input type="nickname" name="nickName" class="weui-input" placeholder="请输入昵称"/>
+        <van-icon name="edit" color="#333" />
+    </view>
+    <view class="f_size_12 align_center" style="color: #C38C4E;margin-top: 40rpx;">温馨提示: 请点击获取头像和昵称!</view>
+    <button class="ope_btn" formType="submit">确认</button>
+  </form>
+</van-popup>

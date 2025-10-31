@@ -1,0 +1,7 @@
+<view class="issueDetail">
+  <view class="answer flex1 overflow_a">
+    <view class="detail">
+      <towxml nodes="{{ dataInfo }}" />
+    </view>
+  </view>
+</view>

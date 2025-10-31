@@ -1,0 +1,29 @@
+<view class="home">
+    <swiper autoplay interval="3000" circular indicator-dots>
+        <block wx:for="{{ advList }}" wx:key="*this">
+            <swiper-item>
+                <image src="https://xiaoxiaofeng.com/restaurant-reservation/{{ item.dictValue }}" class="banner"/>
+            </swiper-item>
+        </block>
+    </swiper>
+    <van-tabs wx:if="{{ kindList.length }}"
+        active="{{ activeIndex }}"
+        id="tabs"
+        color="#e64340"
+        bind:change="onChange">
+        <van-tab title-style="line-height: 76rpx;" wx:for="{{ kindList }}" wx:key="index" title="{{ item.dictLabel }}"></van-tab>
+    </van-tabs>
+    <view class="main_content flex1 overflow_h" wx:if="{{ articleList.length }}">
+        <scroll-view scroll-y class="height_100" enable-flex>
+            <view class="flex article_item align-items-center" wx:for="{{ articleList }}" wx:key="index" bind:tap="goDetail" data-arg="{{ item }}">
+                <image src="https://xiaoxiaofeng.com/restaurant-reservation{{ item.img }}" class="adv_img"/>
+                <view class="descp_item flex1">
+                    <view class="f_weight_bold f_size_15 beyondHidden" style="width: 320rpx;">{{ item.title }}</view>
+                    <view class="f_size_10 descp">{{ item.description }}</view>
+                </view>
+            </view>
+            <view class="align_center f_size_10" style="margin: 8rpx;color: #999;">-到底啦-</view>
+        </scroll-view>
+    </view>
+    <van-empty wx:else description="暂无内容" />
+</view>

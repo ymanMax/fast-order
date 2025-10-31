@@ -1,0 +1,33 @@
+.persion-num {
+  padding: 32rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.persion-num .item {
+  width: 327rpx;
+  height: 180rpx;
+  text-align: center;
+  border: solid 1rpx #aaa;
+  color: #333;
+  margin-bottom: 32rpx;
+  position: relative;
+}
+.persion-num .item.active {
+  border: solid 1rpx #e64340;
+  color: #e64340;
+}
+.persion-num .item .icon {
+  position: absolute;
+  right: 8rpx;
+  top: 8rpx;
+}
+.btn {
+  padding: 0 32rpx;
+}
+.profile {
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
+  margin-top: 32rpx;
+}

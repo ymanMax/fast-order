@@ -1,0 +1,32 @@
+page{
+  height: 100%;
+}
+.order_box{
+  height: 100%;
+  overflow: auto;
+  background-color: #f7f8f9;
+}
+.order_item{
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  margin-top: 12rpx;
+  background-color: #fff;
+}
+.order_item:active{
+  opacity: .6;
+}
+.order_item:last-child{
+  margin-bottom: 0;
+}
+.order_status5{
+  color: #e64340;
+}
+.order_status6{
+  color: #888888;
+}
+.order_status2, .order_status4{
+  color: #0bc960;
+}
+.order_status0, .order_status1, .order_status3{
+  color: #f18832;
+}

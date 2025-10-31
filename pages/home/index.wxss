@@ -1,0 +1,34 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  font-size: 28rpx;
+  flex-direction: column;
+  background: #f7f8f9;
+}
+.banner{
+  width: 750rpx;
+  height: 320rpx;
+
+}
+.van-tabs__scroll--line{
+  height: 80rpx !important;
+}
+.article_item{
+  padding: 24rpx;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.adv_img{
+  width: 300rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  margin-right: 18rpx;
+}
+.descp_item{
+  padding: 0;
+}
+.descp{
+  color: #777;
+  margin-top: 12rpx;
+}

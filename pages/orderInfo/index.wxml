@@ -1,0 +1,49 @@
+<wxs src="/utils/wxmlFunc.wxs" module="tools"></wxs>
+
+<view class="height_100 flex flex-column overflow_h">
+  <van-tabs wx:if="{{ kindList.length }}"
+    active="{{ activeIndex }}"
+    id="tabs"
+    ellipsis="{{ false }}"
+    color="#e64340"
+    bind:change="onChange">
+    <van-tab title-style="line-height: 76rpx;" wx:for="{{ kindList }}" wx:key="index" title="{{ item.dictLabel }}"></van-tab>
+  </van-tabs>
+  <view class="main_content flex1 overflow_h">
+    <view wx:if="{{ orderList.length }}" class="order_box">
+      <view class="order_item" wx:for="{{ orderList }}" wx:key="index" bind:tap="toDetail" data-arg="{{item}}">
+        <view class="flex justify-content-between align-items-center" style="color: #555;padding: 18rpx 0;border-bottom: 1px solid #ddd;">
+          <view class="flex align-items-center">
+            <view>订单号：</view>
+            <view>{{ item.orderNo }}</view>
+          </view>
+        <view class="order_status{{item.reservationStatus}}">{{ tools.indexOf(kindList, item.reservationStatus) }}</view>
+        </view>
+        <view class="f_size_12" style="padding: 24rpx 0;color: #757575;">
+          <view class="flex align-items-baseline justify-content-between">
+            <view class="f_size_16 f_weight_bold" style="color: #4a4a4a;">{{ item.reservationName }}</view>
+            <view>订单金额：{{ item.totalPrice }}元</view>
+          </view>
+          <view class="flex align-items-baseline justify-content-between" style="margin: 12rpx 0;">
+            <view>预留电话：{{ item.reservationPhone }}</view>
+            <view>{{ item.orderTm }}</view>
+          </view>
+          <view class="flex" wx:if="{{ item.remark }}"
+            style="background: #f7f8f9;padding: 12rpx;">
+            <view>备注：</view>
+            <view style="color: #4a4a4a;font-weight: bold;">{{ item.remark }}</view>
+          </view>
+          <view class="flex" wx:if="{{ item.rejectReason }}" style="margin: 12rpx 0;">
+            <view>拒绝原因：</view>
+            <view style="color: red;font-weight: bold;">{{ item.rejectReason }}</view>
+          </view>
+        </view>
+        <view class="flex f_size_13 justify-content-end" style="color: #555;padding: 18rpx 0;border-top: 1px solid #ddd;" wx:if="{{ item.reservationStatus == 1 || item.reservationStatus == 2 }}">
+          <view catch:tap="cancelOrder" data-arg="{{ item }}" style="color: #555;padding: 6rpx 12rpx;border: 1px solid #999;border-radius: 4rpx;">取消订单</view>
+        </view>
+      </view>
+      <view class="align_center f_size_10" style="margin: 8rpx auto;color: #999;background: #f7f8f9;">-到底啦-</view>
+    </view>
+    <van-empty wx:else description="暂无订单" />
+  </view>
+</view>

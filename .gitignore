@@ -1,0 +1,40 @@
+# 微信小程序项目.gitignore文件
+
+# npm依赖目录
+node_modules/
+
+# 微信小程序npm依赖目录
+miniprogram_npm/
+
+# 开发者工具生成的临时文件
+.eslintcache
+.DS_Store
+Thumbs.db
+
+# 项目临时编译文件
+miniprogram/
+
+# 日志文件
+logs/
+*.log
+
+# 个人开发配置文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 环境变量配置文件
+.env
+.env.local
+.env.*.local
+
+# 编译生成的文件
+dist/
+build/
+
+# 其他不需要跟踪的文件
+*.temp
+*.tmp
+.cache/
