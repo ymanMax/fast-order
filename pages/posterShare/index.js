@@ -9,7 +9,11 @@ Page({
   },
 
   onLoad: function (options) {
-    // 初始化画布
+    // 页面加载完成
+  },
+
+  onReady: function () {
+    // 页面初次渲染完成，初始化画布
     this.initCanvas()
   },
 
@@ -30,7 +34,6 @@ Page({
           })
           return
         }
-
         const canvas = res[0].node
         if (!canvas) {
           wx.showToast({
