@@ -1,0 +1,10 @@
+<!--pages/posterShare/index.wxml-->
+<view class="container">
+  <view class="canvas-container">
+    <canvas canvas-id="posterCanvas" class="poster-canvas" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></canvas>
+  </view>
+  <view class="btn-container">
+    <button class="btn btn-save" bindtap="savePoster">保存海报到相册</button>
+    <button class="btn btn-share" open-type="share">分享给朋友</button>
+  </view>
+</view>

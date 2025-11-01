@@ -9,7 +9,8 @@
     "pages/orderDetail/index",
     "pages/msgInfo/index",
     "pages/pay/index",
-    "pages/userInfo/index"
+    "pages/userInfo/index",
+    "pages/posterShare/index"
   ],
   "permission": {
     "scope.userLocation": {
