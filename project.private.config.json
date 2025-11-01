@@ -9,10 +9,10 @@
       "list": [
         {
           "name": "choose",
-          "pathName": "pages/orderInfo/index",
+          "pathName": "pages/posterShare/index",
           "query": "",
-          "launchMode": "default",
-          "scene": null
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }
