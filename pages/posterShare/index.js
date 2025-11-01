@@ -4,7 +4,8 @@ Page({
     canvasWidth: 375,
     canvasHeight: 667,
     posterImage: '',
-    qrCodeImage: ''
+    qrCodeImage: '',
+    loading: true
   },
 
   onLoad: function (options) {
@@ -15,15 +16,38 @@ Page({
   // 初始化画布
   initCanvas: function () {
     const that = this
-    const query = wx.createSelectorQuery()
+    const query = wx.createSelectorQuery().in(this)
     query.select('.poster-canvas')
       .fields({
         node: true,
         size: true
       })
       .exec((res) => {
+        if (!res || res.length === 0 || !res[0]) {
+          wx.showToast({
+            title: '无法找到画布元素',
+            icon: 'none'
+          })
+          return
+        }
+
         const canvas = res[0].node
+        if (!canvas) {
+          wx.showToast({
+            title: '无法获取画布节点',
+            icon: 'none'
+          })
+          return
+        }
+
         const ctx = canvas.getContext('2d')
+        if (!ctx) {
+          wx.showToast({
+            title: '无法获取画布上下文',
+            icon: 'none'
+          })
+          return
+        }
 
         // 设置画布大小
         const dpr = wx.getSystemInfoSync().pixelRatio
@@ -65,6 +89,16 @@ Page({
       // 绘制二维码
       that.drawQRCode(canvas, ctx)
     }
+    image.onerror = function () {
+      console.error('背景图片加载失败')
+      wx.showToast({
+        title: '背景图片加载失败',
+        icon: 'none'
+      })
+      that.setData({
+        loading: false
+      })
+    }
   },
 
   // 绘制二维码
@@ -96,12 +130,25 @@ Page({
           // 保存海报图片
           that.savePosterImage(canvas)
         }
+        qrCodeImage.onerror = function () {
+          console.error('二维码图片加载失败')
+          wx.showToast({
+            title: '二维码图片加载失败',
+            icon: 'none'
+          })
+          that.setData({
+            loading: false
+          })
+        }
       },
       fail: (err) => {
         console.error('生成二维码失败:', err)
         wx.showToast({
           title: '生成二维码失败',
           icon: 'none'
+        })
+        that.setData({
+          loading: false
         })
       }
     })
@@ -114,7 +161,8 @@ Page({
       canvas: canvas,
       success: (res) => {
         that.setData({
-          posterImage: res.tempFilePath
+          posterImage: res.tempFilePath,
+          loading: false
         })
       },
       fail: (err) => {
@@ -122,6 +170,9 @@ Page({
         wx.showToast({
           title: '保存海报图片失败',
           icon: 'none'
+        })
+        that.setData({
+          loading: false
         })
       }
     })
