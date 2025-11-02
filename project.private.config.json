@@ -9,7 +9,7 @@
       "list": [
         {
           "name": "choose",
-          "pathName": "pages/posterShare/index",
+          "pathName": "pages/statistics/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
