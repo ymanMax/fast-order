@@ -487,7 +487,49 @@ var WxCanvas = function () {
   return WxCanvas;
 }();
 
-exports.default = WxCanvas;
+Component({
+  properties: {
+    ec: {
+      type: Object,
+      value: null
+    }
+  },
+  data: {
+    canvasWidth: 0,
+    canvasHeight: 0
+  },
+  lifetimes: {
+    attached: function() {
+      if (!this.data.ec) {
+        console.error('组件需绑定 ec 变量，例：<ec-canvas ec="{{ ec }}" />');
+        return;
+      }
+      this.initCanvas();
+    }
+  },
+  methods: {
+    initCanvas: function() {
+      const canvas = this.createSelectorQuery().select('.ec-canvas');
+      canvas.fields({
+        node: true,
+        size: true
+      }).exec(res => {
+        const canvasNode = res[0].node;
+        const ctx = canvasNode.getContext('2d');
+        const dpr = wx.getSystemInfoSync().pixelRatio;
+        canvasNode.width = res[0].width * dpr;
+        canvasNode.height = res[0].height * dpr;
+        ctx.scale(dpr, dpr);
+        const ec = this.data.ec;
+        if (typeof ec.init === 'function') {
+          ec.init(canvasNode, ctx);
+        } else {
+          console.error('ec 变量需包含 init 方法');
+        }
+      });
+    }
+  }
+});
 
 /***/ })
 /******/ ]);
