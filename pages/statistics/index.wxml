@@ -1,0 +1,48 @@
+<view class="container">
+  <!-- 营业额统计 -->
+  <view class="chart-item">
+    <view class="chart-header">
+      <text class="chart-title">营业额统计</text>
+      <picker class="chart-picker" bindchange="onRevenueYearChange" value="{{selectedRevenueYear}}" range="{{revenueYears}}">
+        <text>{{selectedRevenueYear}}年</text>
+      </picker>
+    </view>
+    <ec-canvas id="revenueChart" canvas-id="revenueCanvas" ec="{{ecRevenue}}" style="width: 300px; height: 200px;"></ec-canvas>
+  </view>
+
+  <!-- 客流量统计 -->
+  <view class="chart-item">
+    <view class="chart-header">
+      <text class="chart-title">客流量统计</text>
+      <picker class="chart-picker" bindchange="onCustomerMonthChange" value="{{selectedCustomerMonth}}" range="{{customerMonths}}">
+        <text>{{customerMonths[selectedCustomerMonth]}}</text>
+      </picker>
+    </view>
+    <ec-canvas id="customerChart" canvas-id="customerCanvas" ec="{{ecCustomer}}" style="width: 300px; height: 200px;"></ec-canvas>
+  </view>
+
+  <!-- 人物画像 -->
+  <view class="chart-item">
+    <view class="chart-header">
+      <text class="chart-title">人物画像</text>
+      <picker class="chart-picker" bindchange="onProfileMonthChange" value="{{selectedProfileMonth}}" range="{{profileMonths}}">
+        <text>{{profileMonths[selectedProfileMonth]}}</text>
+      </picker>
+      <picker class="chart-picker" bindchange="onProfileDimensionChange" value="{{selectedProfileDimension}}" range="{{profileDimensions}}">
+        <text>{{profileDimensions[selectedProfileDimension]}}</text>
+      </picker>
+    </view>
+    <ec-canvas id="profileChart" canvas-id="profileCanvas" ec="{{ecProfile}}" style="width: 300px; height: 200px;"></ec-canvas>
+  </view>
+
+  <!-- 热销菜品 -->
+  <view class="chart-item">
+    <view class="chart-header">
+      <text class="chart-title">热销菜品</text>
+      <picker class="chart-picker" bindchange="onDishesMonthChange" value="{{selectedDishesMonth}}" range="{{dishesMonths}}">
+        <text>{{dishesMonths[selectedDishesMonth]}}</text>
+      </picker>
+    </view>
+    <ec-canvas id="dishesChart" canvas-id="dishesCanvas" ec="{{ecDishes}}" style="width: 300px; height: 200px;"></ec-canvas>
+  </view>
+</view>
